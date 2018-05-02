@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Layout from './components/Layout/Layout';
+import KotaBuilder from './containers/KotaBuilder/KotaBuilder';
 
 class App extends Component {
   render() {
@@ -8,7 +9,7 @@ class App extends Component {
       <div className="App">
 
         <Layout>
-          <p>Test</p>
+          <KotaBuilder/>
         </Layout>
       </div>
     );
