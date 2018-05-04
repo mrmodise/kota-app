@@ -56,6 +56,7 @@ class KotaBuilder extends Component {
                 <Kota ingredients={this.state.ingredients}>Kota</Kota>
                 <BuildControls
                     disabled={disabledInfo}
+                    price={this.state.totalPrice}
                     ingredientRemoved={this.removeIngredientHandler}
                     ingredientAdded={this.addIngredientHandler}/>
             </Aux>
