@@ -20,6 +20,10 @@ const buildControls = props => {
                     less={() => props.ingredientRemoved(ctrl.type)}
                     addMore={() => props.ingredientAdded(ctrl.type)}
                     ingredientLabel={ctrl.label}/>)}
+
+                    <button
+                        className={classes.OrderButton}
+                        disabled={!props.purchasable}>ORDER NOW</button>
         </div>
     );
 };

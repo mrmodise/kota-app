@@ -13,12 +13,13 @@ const INGREDIENT_PRICES = {
 class KotaBuilder extends Component {
     state = {
         ingredients: {
-            lettuce: 1,
-            bacon: 1,
-            cheese: 1,
-            meat: 1
+            lettuce: 0,
+            bacon: 0,
+            cheese: 0,
+            meat: 0
         },
-        totalPrice: 2
+        totalPrice: 0,
+        purchasable: false
     };
 
     addIngredientHandler = type => {
@@ -29,6 +30,8 @@ class KotaBuilder extends Component {
         const newPrice = this.state.totalPrice + INGREDIENT_PRICES[type];
 
         this.setState({totalPrice: newPrice, ingredients: updateIngredients});
+
+        this.updatePurchases(updateIngredients)
     };
 
     removeIngredientHandler = type => {
@@ -45,6 +48,20 @@ class KotaBuilder extends Component {
         const newPrice = this.state.totalPrice - INGREDIENT_PRICES[type];
 
         this.setState({totalPrice: newPrice, ingredients: updateIngredients});
+
+        this.updatePurchases(updateIngredients);
+    };
+
+    updatePurchases(ingredients) {
+        const sum = Object.keys(ingredients)
+            .map(igKey => {
+                return ingredients[igKey];
+            })
+            .reduce((sum, el) => {
+                return sum + el;
+            }, 0);
+
+        this.setState({purchasable: sum > 0});
     };
 
     render() {
@@ -57,6 +74,7 @@ class KotaBuilder extends Component {
                 <BuildControls
                     disabled={disabledInfo}
                     price={this.state.totalPrice}
+                    purchasable={this.state.purchasable}
                     ingredientRemoved={this.removeIngredientHandler}
                     ingredientAdded={this.addIngredientHandler}/>
             </Aux>
