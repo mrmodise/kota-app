@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
 import Kota from '../../components/Kota/Kota';
 import BuildControls from '../../components/Kota/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Kota/BuildControls/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
     lettuce: 0.5,
@@ -13,13 +15,14 @@ const INGREDIENT_PRICES = {
 class KotaBuilder extends Component {
     state = {
         ingredients: {
-            lettuce: 0,
-            bacon: 0,
-            cheese: 0,
-            meat: 0
+            lettuce: 1,
+            bacon: 1,
+            cheese: 1,
+            meat: 1
         },
         totalPrice: 0,
-        purchasable: false
+        purchasable: false,
+        purchasing: false
     };
 
     addIngredientHandler = type => {
@@ -64,15 +67,23 @@ class KotaBuilder extends Component {
         this.setState({purchasable: sum > 0});
     };
 
+    purchaseHandler = () => {
+        this.setState({purchasing: true});
+    };
+
     render() {
         const disabledInfo = {...this.state.ingredients};
         for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
 
         return (
             <Aux>
+                <Modal show={this.state.purchasing}>
+                    <OrderSummary ingredients={this.state.ingredients}/>
+                </Modal>
                 <Kota ingredients={this.state.ingredients}>Kota</Kota>
                 <BuildControls
                     disabled={disabledInfo}
+                    ordered={this.purchaseHandler}
                     price={this.state.totalPrice}
                     purchasable={this.state.purchasable}
                     ingredientRemoved={this.removeIngredientHandler}
