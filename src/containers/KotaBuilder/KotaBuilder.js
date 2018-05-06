@@ -20,7 +20,7 @@ class KotaBuilder extends Component {
             cheese: 1,
             meat: 1
         },
-        totalPrice: 0,
+        totalPrice: 10,
         purchasable: false,
         purchasing: false
     };
@@ -71,13 +71,17 @@ class KotaBuilder extends Component {
         this.setState({purchasing: true});
     };
 
+    purchaseCancelHandler = () => {
+      this.setState({purchasing: false});
+    };
+
     render() {
         const disabledInfo = {...this.state.ingredients};
         for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
 
         return (
             <Aux>
-                <Modal show={this.state.purchasing}>
+                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     <OrderSummary ingredients={this.state.ingredients}/>
                 </Modal>
                 <Kota ingredients={this.state.ingredients}>Kota</Kota>
