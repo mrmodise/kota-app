@@ -87,7 +87,8 @@ class KotaBuilder extends Component {
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     <OrderSummary purchaseCancelled={this.purchaseCancelHandler}
-                                  purchaseContinue={this.purchaseContinueHandler}
+                                  price={this.state.totalPrice}
+                                  purchaseContinued={this.purchaseContinueHandler}
                                   ingredients={this.state.ingredients}/>
                 </Modal>
                 <Kota ingredients={this.state.ingredients}>Kota</Kota>
