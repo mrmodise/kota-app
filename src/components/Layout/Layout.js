@@ -19,7 +19,7 @@ class Layout extends Component {
     };
 
     openSideDrawer = () => {
-       this.setState({showSideDrawer: true});
+       this.setState({showSideDrawer: !this.state.showSideDrawer});
     };
 
     render() {
