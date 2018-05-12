@@ -1,13 +1,3 @@
-# Kota Application
-
-To those who’ve grown up in the townships of South Africa, where the spazas sell popular street food unique to this socio-economic and geographic area,
-a kota is a kota – and like nothing else.
-
-## Setup
-To install dependencies, on the terminal type ```yarn install```. This will install dependencies. To run the application, ```yarn start```.
-
-## License
-```
 The MIT License (MIT)
 
 Copyright (c) 2018 Mr Modise
@@ -29,4 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-```
