@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux/Aux';
 import Kota from '../../components/Kota/Kota';
 import BuildControls from '../../components/Kota/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
