@@ -4,3 +4,6 @@ To those who’ve grown up in the townships of South Africa, where the spazas se
 a kota is a kota – and like nothing else.
 
 ## Setup
+To install dependencies, on the terminal type ```yarn install```. This will install dependencies. To run the application, ```yarn start```.
+
+## License
