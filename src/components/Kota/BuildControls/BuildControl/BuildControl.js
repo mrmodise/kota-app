@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 import classes from './BuildControl.css';
 
 const buildControl = props => {
@@ -9,8 +10,8 @@ const buildControl = props => {
                 className={classes.Less}
                 onClick={props.less}
                 disabled={props.isDisabled}>Less</button>
-            <button className={classes.More}
-                    onClick={props.addMore}>More</button>
+            <Button className={classes.More}
+                    onClick={props.addMore}>More</Button>
         </div>
     );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
-import classes from './Button.css';
+import {Button} from 'react-bootstrap';
 
 const button = props => {
     return (
-        <button className={[classes.Button, classes[props.btnType]].join(' ')}
-        onClick={props.clicked}>{props.children}</button>
+        <Button bsStyle={props.btnType}
+        onClick={props.clicked}>{props.children}</Button>
     );
 };
 
