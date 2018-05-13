@@ -17,12 +17,7 @@ const INGREDIENT_PRICES = {
 
 class KotaBuilder extends Component {
     state = {
-        ingredients: {
-            lettuce: 1,
-            bacon: 1,
-            cheese: 1,
-            meat: 1
-        },
+        ingredients: {},
         totalPrice: 10,
         purchasable: false,
         purchasing: false,
@@ -100,6 +95,14 @@ class KotaBuilder extends Component {
             .then(response => this.setState({loading: false, purchasing: false}))
             .catch(error => this.setState({loading: false, purchasing: false}));
     };
+
+    componentDidMount() {
+        axios.get('/ingredients.json')
+            .then(response => {
+                this.setState({ingredients: response.data});
+                this.setState({loading: false, purchasing: false});
+            }).catch(error =>  this.setState({loading: false, purchasing: false}));
+    }
 
     render() {
         const disabledInfo = {...this.state.ingredients};
