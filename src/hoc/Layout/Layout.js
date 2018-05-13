@@ -10,7 +10,7 @@ class Layout extends Component {
     constructor() {
         super();
         this.state =  {
-            showSideDrawer: true
+            showSideDrawer: false
         };
     }
 
