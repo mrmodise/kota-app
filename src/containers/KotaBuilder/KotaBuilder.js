@@ -4,6 +4,8 @@ import Kota from '../../components/Kota/Kota';
 import BuildControls from '../../components/Kota/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Kota/BuildControls/OrderSummary/OrderSummary';
+import axios from '../../axios-orders';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const INGREDIENT_PRICES = {
     lettuce: 0.5,
@@ -22,7 +24,8 @@ class KotaBuilder extends Component {
         },
         totalPrice: 10,
         purchasable: false,
-        purchasing: false
+        purchasing: false,
+        loading: false
     };
 
     addIngredientHandler = type => {
@@ -76,20 +79,44 @@ class KotaBuilder extends Component {
     };
 
     purchaseContinueHandler = () => {
-        alert("Continue...");
+        this.setState({loading: true});
+
+        const order = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice.toFixed(2),
+            customer: {
+                name: 'Praise Modise',
+                address: {
+                    street: 'Long street',
+                    zip: 7780,
+                    country: 'South Africa'
+                },
+                email: 'test@gmail.com'
+            }
+        };
+
+        axios.post('/orders.json', order)
+            .then(response => this.setState({loading: false, purchasing: false}))
+            .catch(error => this.setState({loading: false, purchasing: false}));
     };
 
     render() {
         const disabledInfo = {...this.state.ingredients};
         for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
 
+        let orderSummary = <OrderSummary purchaseCancelled={this.purchaseCancelHandler}
+                                         price={this.state.totalPrice}
+                                         purchaseContinued={this.purchaseContinueHandler}
+                                         ingredients={this.state.ingredients}/>;
+
+        if(this.state.loading) {
+            orderSummary = <Spinner />
+        }
+
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-                    <OrderSummary purchaseCancelled={this.purchaseCancelHandler}
-                                  price={this.state.totalPrice}
-                                  purchaseContinued={this.purchaseContinueHandler}
-                                  ingredients={this.state.ingredients}/>
+                    {orderSummary}
                 </Modal>
                 <Kota ingredients={this.state.ingredients}>Kota</Kota>
                 <BuildControls
