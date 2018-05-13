@@ -6,6 +6,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Kota/BuildControls/OrderSummary/OrderSummary';
 import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import ErrorHandler from '../../hoc/ErrorHander/ErrorHandler';
 
 const INGREDIENT_PRICES = {
     lettuce: 0.5,
@@ -131,4 +132,4 @@ class KotaBuilder extends Component {
     }
 }
 
-export default KotaBuilder;
+export default ErrorHandler(KotaBuilder, axios);
