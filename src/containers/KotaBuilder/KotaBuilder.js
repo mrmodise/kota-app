@@ -91,7 +91,7 @@ class KotaBuilder extends Component {
             }
         };
 
-        axios.post('/ordersss.json', order)
+        axios.post('/orders.json', order)
             .then(response => this.setState({loading: false, purchasing: false}))
             .catch(error => this.setState({loading: false, purchasing: false}));
     };
