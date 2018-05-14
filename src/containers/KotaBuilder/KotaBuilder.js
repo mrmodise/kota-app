@@ -17,7 +17,7 @@ const INGREDIENT_PRICES = {
 
 class KotaBuilder extends Component {
     state = {
-        ingredients: {},
+        ingredients: null,
         totalPrice: 10,
         purchasable: false,
         purchasing: false,
@@ -91,7 +91,7 @@ class KotaBuilder extends Component {
             }
         };
 
-        axios.post('/orders.json', order)
+        axios.post('/ordersss.json', order)
             .then(response => this.setState({loading: false, purchasing: false}))
             .catch(error => this.setState({loading: false, purchasing: false}));
     };
@@ -108,10 +108,29 @@ class KotaBuilder extends Component {
         const disabledInfo = {...this.state.ingredients};
         for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
 
-        let orderSummary = <OrderSummary purchaseCancelled={this.purchaseCancelHandler}
-                                         price={this.state.totalPrice}
-                                         purchaseContinued={this.purchaseContinueHandler}
-                                         ingredients={this.state.ingredients}/>;
+        let orderSummary = null;
+
+        let kota = <Spinner/>;
+
+        if(this.state.ingredients) {
+            kota = (
+                <Aux>
+                    <Kota ingredients={this.state.ingredients}>Kota</Kota>
+                    <BuildControls
+                        disabled={disabledInfo}
+                        ordered={this.purchaseHandler}
+                        price={this.state.totalPrice}
+                        purchasable={this.state.purchasable}
+                        ingredientRemoved={this.removeIngredientHandler}
+                        ingredientAdded={this.addIngredientHandler}/>
+                </Aux>
+            );
+
+            orderSummary = <OrderSummary purchaseCancelled={this.purchaseCancelHandler}
+                          price={this.state.totalPrice}
+                          purchaseContinued={this.purchaseContinueHandler}
+                          ingredients={this.state.ingredients}/>;
+        }
 
         if(this.state.loading) {
             orderSummary = <Spinner />
@@ -122,14 +141,7 @@ class KotaBuilder extends Component {
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     {orderSummary}
                 </Modal>
-                <Kota ingredients={this.state.ingredients}>Kota</Kota>
-                <BuildControls
-                    disabled={disabledInfo}
-                    ordered={this.purchaseHandler}
-                    price={this.state.totalPrice}
-                    purchasable={this.state.purchasable}
-                    ingredientRemoved={this.removeIngredientHandler}
-                    ingredientAdded={this.addIngredientHandler}/>
+                {kota}
             </Aux>
         );
     }
