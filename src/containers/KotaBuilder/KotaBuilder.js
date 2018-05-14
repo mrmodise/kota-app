@@ -21,7 +21,8 @@ class KotaBuilder extends Component {
         totalPrice: 10,
         purchasable: false,
         purchasing: false,
-        loading: false
+        loading: false,
+        error: false
     };
 
     addIngredientHandler = type => {
@@ -96,12 +97,23 @@ class KotaBuilder extends Component {
             .catch(error => this.setState({loading: false, purchasing: false}));
     };
 
+    updatePrice(ingredients) {
+        const newPrice = Object.keys(ingredients).map(igKey => {
+                return ingredients[igKey] * INGREDIENT_PRICES[igKey];
+            }).reduce((newPrice, el) => {
+                return newPrice + el;
+            }, 0);
+
+        this.setState({totalPrice: newPrice + 10});
+    }
+
     componentDidMount() {
         axios.get('/ingredients.json')
             .then(response => {
                 this.setState({ingredients: response.data});
+                this.updatePrice(response.data);
                 this.setState({loading: false, purchasing: false});
-            }).catch(error =>  this.setState({loading: false, purchasing: false}));
+            }).catch(error =>  this.setState({error: true}));
     }
 
     render() {
@@ -110,7 +122,7 @@ class KotaBuilder extends Component {
 
         let orderSummary = null;
 
-        let kota = <Spinner/>;
+        let kota = <Spinner />;
 
         if(this.state.ingredients) {
             kota = (
@@ -133,7 +145,7 @@ class KotaBuilder extends Component {
         }
 
         if(this.state.loading) {
-            orderSummary = <Spinner />
+            orderSummary = this.state.error ? <p>Something went wrong</p> : <Spinner />;
         }
 
         return (
