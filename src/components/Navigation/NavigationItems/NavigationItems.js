@@ -6,7 +6,7 @@ const navigationItems = props => {
     return (
         <ul className={classes.NavigationItems}>
             <NavigationItem link={"/"} active={true}>Kota Builder</NavigationItem>
-            <NavigationItem link={"/"}>Checkout</NavigationItem>
+            <NavigationItem link={"/checkout"}>Checkout</NavigationItem>
         </ul>
     );
 };
