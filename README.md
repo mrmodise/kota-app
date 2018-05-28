@@ -1,10 +1,17 @@
 # Kota Application
 
 To those who’ve grown up in the townships of South Africa, where the spazas sell popular street food unique to this socio-economic and geographic area,
-a kota is a kota – and like nothing else. Built in the latest ReactJS library by Facebook, the Kota app, is a full featured application built with user experience in mind.
+a kota is a kota – and like nothing else. Built using the latest ReactJS (16.x) library by Facebook, the Kota app, is a full featured application built with user experience in mind.
 
 ## Setup
-To install dependencies, on the terminal type ```yarn install```. This will install dependencies. To run the application, ```yarn start```.
+Setting up a ReactJS project is as easy as:
+
+* Install dependencies, on the terminal type ```yarn install```.
+* Run the application, ```yarn start```.
+
+## What's Next?
+The application is actively being developed hence watch-out for a load of ReactJS features e.g. unit testing, UI automated tests using Cypress and Integration with
+backend frameworks/languages such as NodeJS and Spring Boot.
 
 ## License
 ```
