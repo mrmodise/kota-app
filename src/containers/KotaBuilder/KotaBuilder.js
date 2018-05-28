@@ -76,7 +76,8 @@ class KotaBuilder extends Component {
     };
 
     purchaseContinueHandler = () => {
-        this.setState({loading: true});
+        this.props.history.push('/checkout');
+        /*this.setState({loading: true});
 
         const order = {
             ingredients: this.state.ingredients,
@@ -94,7 +95,7 @@ class KotaBuilder extends Component {
 
         axios.post('/orders.json', order)
             .then(response => this.setState({loading: false, purchasing: false}))
-            .catch(error => this.setState({loading: false, purchasing: false}));
+            .catch(error => this.setState({loading: false, purchasing: false}));*/
     };
 
     updatePrice(ingredients) {
@@ -108,6 +109,7 @@ class KotaBuilder extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
         axios.get('/ingredients.json')
             .then(response => {
                 this.setState({ingredients: response.data});

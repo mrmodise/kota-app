@@ -5,6 +5,7 @@ import KotaIngredient from './KotaIngredient/KotaIngredient';
 class Kota extends Component {
     render() {
 
+        console.log(this.props);
         let transformedIngredients = Object
             .keys(this.props.ingredients)
             .map(igKey => {
