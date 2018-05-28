@@ -76,7 +76,19 @@ class KotaBuilder extends Component {
     };
 
     purchaseContinueHandler = () => {
-        this.props.history.push('/checkout');
+
+        const queryParams = [];
+
+        for(let ingr of this.state.ingredients) {
+            queryParams.push(encodeURIComponent(ingr) + '=' +
+                encodeURIComponent(this.state.ingredients[ingr]));
+        }
+
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
         /*this.setState({loading: true});
 
         const order = {
