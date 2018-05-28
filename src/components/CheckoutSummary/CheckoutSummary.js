@@ -11,8 +11,8 @@ const checkoutSummary = props => {
                 <Kota ingredients={props.ingredients}/>
             </div>
 
-            <Button btnType={"danger"} clicked={""}>Cancel</Button>
-            <Button btnType={"success"} clicked={""}>Continue</Button>
+            <Button btnType={"danger"} clicked={props.cancel}>Cancel</Button>
+            <Button btnType={"success"} clicked={props.continue}>Continue</Button>
 
         </div>
     );
