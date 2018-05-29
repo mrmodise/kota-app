@@ -79,7 +79,7 @@ class KotaBuilder extends Component {
 
         const queryParams = [];
 
-        for(let ingr of this.state.ingredients) {
+        for(let ingr in this.state.ingredients) {
             queryParams.push(encodeURIComponent(ingr) + '=' +
                 encodeURIComponent(this.state.ingredients[ingr]));
         }
