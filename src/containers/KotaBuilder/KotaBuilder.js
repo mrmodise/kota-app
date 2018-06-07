@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import Aux from '../../hoc/Aux/Aux';
+import React, {Component, Fragment} from 'react';
 import Kota from '../../components/Kota/Kota';
 import BuildControls from '../../components/Kota/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -140,7 +139,7 @@ class KotaBuilder extends Component {
 
         if(this.state.ingredients) {
             kota = (
-                <Aux>
+                <Fragment>
                     <Kota ingredients={this.state.ingredients}>Kota</Kota>
                     <BuildControls
                         disabled={disabledInfo}
@@ -149,7 +148,7 @@ class KotaBuilder extends Component {
                         purchasable={this.state.purchasable}
                         ingredientRemoved={this.removeIngredientHandler}
                         ingredientAdded={this.addIngredientHandler}/>
-                </Aux>
+                </Fragment>
             );
 
             orderSummary = <OrderSummary purchaseCancelled={this.purchaseCancelHandler}
@@ -163,12 +162,12 @@ class KotaBuilder extends Component {
         }
 
         return (
-            <Aux>
+            <Fragment>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     {orderSummary}
                 </Modal>
                 {kota}
-            </Aux>
+            </Fragment>
         );
     }
 }
