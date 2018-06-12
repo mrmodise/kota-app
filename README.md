@@ -8,6 +8,7 @@ Setting up a ReactJS project is as easy as:
 
 * Install dependencies, on the terminal type ```yarn install```.
 * Run the application, ```yarn start```.
+* To build files for deployment on a server: ```yarn run build```
 
 ## What's Next?
 The application is actively being developed hence watch-out for a load of ReactJS features e.g. unit testing, UI automated tests using Cypress and Integration with
